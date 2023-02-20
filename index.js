@@ -9,7 +9,6 @@ const UserRoute = require("./Routes/user_route");
 const ProductsRoute = require("./Routes/products_route");
 const OrdersRoute = require("./Routes/orders_route");
 dotenv.config();
-
 winston.add(new winston.transports.File({ filename: "logfile.log" }));
 winston.add(
   new winston.transports.Console({ colorize: true, prettyPrint: true })
@@ -26,8 +25,8 @@ const connect = () => {
     console.log("database was connected ");
   });
 };
+c
 app.use(express.json());
-
 //login and register
 app.use("/api/auth", AuthRoute);
 app.use("/api/users", UserRoute);
@@ -38,7 +37,6 @@ app.use("/api/orders", OrdersRoute);
 
 app.use((err, req, res, next) => {
   const { status, message, stack } = err;
-
   winston.error(message, err);
   res.status(status || 500).json({
     message: message || "Something went wrong",

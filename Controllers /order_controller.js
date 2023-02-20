@@ -47,9 +47,9 @@ exports.getAllOrders = async (req, res, next) => {
 };
 
 exports.getOrder = async (req, res, next) => {
+  //function to get a single order 
   try {
     const order = await Order.findById(req.params.id);
-
     res.status(200).json(getStandardResponse(200, "order", order, req));
   } catch (error) {
     next(error);
@@ -61,7 +61,7 @@ exports.updateOrder = async (req, res, next) => {
     //check if the order exist
     const orderFound = await Order.findById(req.params.id);
     if (!orderFound) return res.json(createError(404, "Order not found"));
-
+    //check if the user has the permission to update the order
     if (req.user.id == orderFound._doc.userId || req.user.role == 1) {
       const Updatedorder = await Order.findByIdAndUpdate(
         req.params.id,

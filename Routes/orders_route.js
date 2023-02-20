@@ -14,5 +14,4 @@ router.get("/getAllOrders", [verifyToken, verifyAdmin], getAllOrders);
 router.get("/getOrder/:id", getOrder);
 router.put("/updateOrder/:id", [verifyToken, verifyAdmin], updateOrder);
 router.put("/removeOrder/:id", [verifyToken, verifyAdmin], removeOrder);
-
 module.exports = router;

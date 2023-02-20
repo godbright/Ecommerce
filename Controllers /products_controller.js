@@ -100,7 +100,6 @@ exports.getFavorateList = async (req, res, next) => {
 
     const favorateIds = user.favorate;
     //retrieve the list of products with the particular id.
-    console.log(favorateIds);
     const list = await Promise.all(
       favorateIds.map((favorateId) => {
         return Product.find({ _id: favorateId });
